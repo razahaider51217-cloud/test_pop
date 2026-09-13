@@ -1,0 +1,8 @@
+# Block all crawlers/bots by default (stealth)
+User-agent: *
+Disallow: /
+
+# Allow Googlebot so AdSense can validate the page.
+# To block Google too, delete the two lines below.
+User-agent: Googlebot
+Allow: /
