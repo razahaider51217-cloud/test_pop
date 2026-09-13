@@ -2,6 +2,7 @@
 // Fixes the Windows issue where Python's http.server reports .js as "text/plain",
 // which makes browsers refuse to run <script type="module">.
 const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
@@ -71,28 +72,64 @@ function ipToBigInt(ip) {
   return v;
 }
 
-const cidrList = [];
-for (const f of RANGE_FILES) {
-  for (const cidr of loadRanges(f)) {
-    const bits = String(cidr).split('/');
-    const len = bits[1] === undefined ? 128 : parseInt(bits[1], 10);
-    const isV4 = bits[0].indexOf('.') !== -1;
-    try {
-      // IPv4 occupies bits 32..63 of the 128-bit value, so a /len v4 range
-      // must clear the low (32+len) bits. v6 fills all 128 bits: clear (128-len).
-      const mask = isV4 ? ((~0n) << BigInt(32 + len)) : (len <= 0 ? 0n : (~0n) << BigInt(128 - len));
-      cidrList.push({ base: ipToBigInt(bits[0]) & mask, mask });
-    } catch (e) { /* skip malformed entry */ }
+// --- build the matcher from the 4 JSON files (boot + after every refresh) ----
+function buildCidrList() {
+  const list = [];
+  for (const f of RANGE_FILES) {
+    for (const cidr of loadRanges(f)) {
+      const bits = String(cidr).split('/');
+      const len = bits[1] === undefined ? 128 : parseInt(bits[1], 10);
+      const isV4 = bits[0].indexOf('.') !== -1;
+      try {
+        // IPv4 occupies bits 32..63 of the 128-bit value, so a /len v4 range
+        // must clear the low (32+len) bits. v6 fills all 128 bits: clear (128-len).
+        const mask = isV4 ? ((~0n) << BigInt(32 + len)) : (len <= 0 ? 0n : (~0n) << BigInt(128 - len));
+        list.push({ base: ipToBigInt(bits[0]) & mask, mask });
+      } catch (e) { /* skip malformed entry */ }
+    }
   }
+  return list;
 }
+
+let cidrList = buildCidrList();
 console.log('Loaded ' + cidrList.length + ' Google IP ranges for bot blocking');
 
 function ipBlocked(ip) {
   let v;
   try { v = ipToBigInt(ip); } catch (e) { return false; }
-  for (const r of cidrList) if ((v & r.mask) === r.base) return true;
+  const list = cidrList; // snapshot of the current list
+  for (const r of list) if ((v & r.mask) === r.base) return true;
   return false;
 }
+
+// --- auto-refresh: re-download Google's official range files at boot + every 12h ---
+// The committed ipranges/ files are the fallback when a download fails.
+const RANGE_DIR = path.join(root, 'ipranges');
+const RANGE_URL = 'https://developers.google.com/static/crawling/ipranges/';
+let refreshing = false;
+function refreshRanges() {
+  if (refreshing) return;
+  refreshing = true;
+  const jobs = RANGE_FILES.map(f => new Promise(resolve => {
+    https.get(RANGE_URL + f, res => {
+      if (res.statusCode !== 200) { res.resume(); return resolve(f + ': HTTP ' + res.statusCode); }
+      const chunks = [];
+      res.on('data', c => chunks.push(c));
+      res.on('end', () => {
+        try { fs.writeFileSync(path.join(RANGE_DIR, f), Buffer.concat(chunks).toString('utf8')); resolve(null); }
+        catch (e) { resolve(f + ': ' + e.message); }
+      });
+    }).on('error', e => resolve(f + ': ' + e.message));
+  }));
+  Promise.all(jobs).then(results => {
+    refreshing = false;
+    const errors = results.filter(Boolean);
+    cidrList = buildCidrList(); // swap in the fresh list (same list if downloads failed)
+    console.log('[ipranges] refresh done: ' + cidrList.length + ' ranges' + (errors.length ? ' | ' + errors.join('; ') : ''));
+  });
+}
+refreshRanges();
+setInterval(refreshRanges, 12 * 60 * 60 * 1000); // every 12 hours
 
 // --- fallback: well-known bot user agents -----------------------------------
 const BOT_UA = /googlebot|adsbot|mediapartners-google|bingbot|msnbot|slurp|yandex|baiduspider|petalbot|duckduckbot|facebot|facebookexternalhit|twitterbot|linkedinbot|telegrambot|whatsapp|discordbot|pinterest|slackbot|ahrefsbot|semrushbot|majestic|mj12bot|screaming\ frog|gptbot|chatgpt-user|ccbot|bytespider|amazonbot|applebot|sogou|seznambot|lighthouse|headlesschrome|spider|crawler/i;
@@ -154,4 +191,4 @@ http.createServer((req, res) => {
   });
 }).listen(PORT, () => console.log('Serving ' + root + ' at http://localhost:' + PORT + '/'));
 
-module.exports = { ipBlocked, cidrList }; // for tests
+module.exports = { ipBlocked }; // for tests
