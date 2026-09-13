@@ -1,8 +1,4 @@
-# Block all crawlers/bots by default (stealth)
+# Block ALL crawlers/bots (stealth). Googlebot is also IP-blocked at the
+# server level, so it never even sees this file.
 User-agent: *
 Disallow: /
-
-# Allow Googlebot so AdSense can validate the page.
-# To block Google too, delete the two lines below.
-User-agent: Googlebot
-Allow: /
