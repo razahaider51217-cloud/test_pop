@@ -167,6 +167,7 @@ var menuPop = document.getElementById('menuPop');
 var mpQty = 1;
 
 function openMenuPop(card) {
+    window.sarabOpenCard = card;
     var img = card.getAttribute('data-img');
     var title = card.getAttribute('data-title');
     var cat = card.getAttribute('data-cat');
@@ -258,36 +259,25 @@ document.getElementById('mpMinus').addEventListener('click', function() {
     if (mpQty > 1) document.getElementById('mpQnum').textContent = --mpQty;
 });
 
-// Add to cart button
+// Add to cart button - the working cart lives in js/cart.js
 document.getElementById('mpAddCart').addEventListener('click', function() {
-    var cnt = parseInt(document.getElementById('cartCount').textContent) + mpQty;
-    document.getElementById('cartCount').textContent = cnt;
-    this.innerHTML = '<i class="fas fa-check"></i> Added to Cart!';
+    if (!window.SarabCart) return;
+    var added = SarabCart.addFromPopup(mpQty);
+    if (!added) return;
+    this.innerHTML = '<i class="fas fa-check"></i> Added to cart!';
     this.style.background = 'linear-gradient(135deg,var(--green),#1a4a35)';
     var self = this;
     setTimeout(function() {
         closeMenuPop();
         self.innerHTML = '<i class="fas fa-shopping-cart"></i> Add to Cart';
         self.style.background = '';
-    }, 1000);
+    }, 900);
 });
 
 
-document.getElementById('resBtn').addEventListener('click', function() {
-    var btn = this;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
-    btn.disabled = true;
-    setTimeout(function() {
-        btn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirm Reservation';
-        btn.disabled = false;
-        var ok = document.getElementById('resOk');
-        ok.style.display = 'block';
-        ok.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest'
-        });
-    }, 1500);
-});
+/* Reservation form: the booking is handled by js/booking.js (branch aware,
+   validates the details and hands the booking to the chosen branch by email
+   or phone). Nothing to do here. */
 
 
 document.getElementById('ctcBtn').addEventListener('click', function() {

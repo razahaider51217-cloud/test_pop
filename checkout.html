@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Checkout | Order Cheap Meals Online from Sarab, New York</title>
+      <meta name="description" content="Check your Sarab order, choose a branch, add your delivery details and confirm. Free delivery over $25, delivery across New York in about 25 minutes.">
+      <meta name="robots" content="noindex, follow">
+      <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+      <meta name="theme-color" content="#e8281a">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/all.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Google Consent Mode v2 + GA4 / Google Ads (replace both placeholder IDs) -->
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+         });
+         gtag('js', new Date());
+         gtag('config', 'G-XXXXXXXXXX', { 'anonymize_ip': true });
+         gtag('config', 'AW-XXXXXXXXXX');
+      </script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+   </head>
+   <body>
+      <div class="rc-top">
+         <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <a class="rc-lg" href="index.html">Sar<span>ab</span></a>
+            <div class="rc-toplinks">
+               <a href="index.html"><i class="fas fa-house me-1"></i>Home</a>
+               <a href="index.html#menu"><i class="fas fa-utensils me-1"></i>Menu</a>
+               <a href="recipes.html"><i class="fas fa-book-open me-1"></i>Cheap Recipes</a>
+               <a href="locations.html"><i class="fas fa-map-location-dot me-1"></i>Branches</a>
+            </div>
+         </div>
+      </div>
+
+      <header class="rc-hero">
+         <div class="container">
+            <nav class="rc-crumb" aria-label="Breadcrumb">
+               <a href="index.html">Home</a>
+               <i class="fas fa-chevron-right"></i>
+               <a href="index.html#menu">Menu</a>
+               <i class="fas fa-chevron-right"></i>
+               <span>Checkout</span>
+            </nav>
+            <span class="rc-slbl">Almost eating</span>
+            <h1 class="rc-title">Checkout</h1>
+            <p class="rc-lead">Check your order, pick the branch you want to collect from or have it delivered. No online payment needed - pay by cash, card or Apple Pay when your food arrives, or at the counter.</p>
+            <div class="rc-chips">
+               <span class="rc-chip"><i class="fas fa-truck-fast me-1"></i>Delivery in about 25 minutes</span>
+               <span class="rc-chip">Free delivery over $25</span>
+               <span class="rc-chip alt"><i class="fas fa-lock me-1"></i>No card details stored</span>
+            </div>
+         </div>
+      <main class="rc-body">
+         <div class="container">
+
+            <!-- empty cart state -->
+            <div class="ckempty" id="ckEmpty" style="display:none;">
+               <i class="fas fa-bowl-food"></i>
+               <h3>Your cart is empty</h3>
+               <p>Add a burger, a pizza or one of our $5.99 meal deals and come back to checkout. Delivery takes about 25 minutes.</p>
+               <a class="rc-btn" href="index.html#menu"><i class="fas fa-utensils"></i>Browse the menu</a>
+            </div>
+
+            <div class="row g-4" id="ckMain">
+               <div class="col-lg-7">
+                  <form id="checkoutForm" novalidate>
+                     <div class="ckpanel">
+                        <h2 class="rc-h2"><i class="fas fa-truck"></i>How would you like your order?</h2>
+                        <div class="ckopts">
+                           <label class="ckopt">
+                              <input type="radio" name="ordertype" value="delivery" checked>
+                              <span><strong>Delivery</strong><em>To your door in about 25 minutes</em></span>
+                           </label>
+                           <label class="ckopt">
+                              <input type="radio" name="ordertype" value="pickup">
+                              <span><strong>Pickup</strong><em>Ready to collect in about 20 minutes</em></span>
+                           </label>
+                           <label class="ckopt">
+                              <input type="radio" name="ordertype" value="dinein">
+                              <span><strong>Dine in</strong><em>Eat at the branch, table held 15 minutes</em></span>
+                           </label>
+                        </div>
+                     </div>
+
+                     <div class="ckpanel">
+                        <h2 class="rc-h2"><i class="fas fa-store"></i>Branch</h2>
+                        <label class="flbl" for="ckBranch">Which Sarab branch? *</label>
+                        <select class="fctrl" id="ckBranch" required>
+                           <option value="">Choose your Sarab branch...</option>
+                        </select>
+                        <p class="ckbranchphone" id="ckBranchPhone"></p>
+                        <label class="flbl" for="ckWhen" style="margin-top:14px;">When do you want it?</label>
+                        <select class="fctrl" id="ckWhen">
+                           <option selected>ASAP</option>
+                           <option>In 30 minutes</option>
+                           <option>In 1 hour</option>
+                           <option>In 2 hours</option>
+                           <option>This evening</option>
+                        </select>
+                     </div>
+                     <div class="ckpanel">
+                        <h2 class="rc-h2"><i class="fas fa-user"></i>Your details</h2>
+                        <div class="row g-3">
+                           <div class="col-sm-6"><label class="flbl" for="ckName">Full name *</label><input class="fctrl" type="text" id="ckName" placeholder="Jane Smith" autocomplete="name" required/></div>
+                           <div class="col-sm-6"><label class="flbl" for="ckPhone">Phone number *</label><input class="fctrl" type="tel" id="ckPhone" placeholder="+1 (212) 000-0000" autocomplete="tel" required/></div>
+                           <div class="col-sm-6"><label class="flbl" for="ckEmail">Email (for the receipt)</label><input class="fctrl" type="email" id="ckEmail" placeholder="you@email.com" autocomplete="email"/></div>
+                           <div class="col-sm-6"><label class="flbl" for="ckNotes">Order notes</label><input class="fctrl" type="text" id="ckNotes" placeholder="No onions, extra sauce..."/></div>
+                        </div>
+                        <div id="ckDeliveryFields">
+                           <div class="row g-3" style="margin-top:2px;">
+                              <div class="col-12"><label class="flbl" for="ckAddress">Street address *</label><input class="fctrl" type="text" id="ckAddress" placeholder="123 West 42nd Street, Apt 5" autocomplete="street-address"/></div>
+                              <div class="col-sm-8"><label class="flbl" for="ckCity">City *</label><input class="fctrl" type="text" id="ckCity" placeholder="New York" autocomplete="address-level2"/></div>
+                              <div class="col-sm-4"><label class="flbl" for="ckZip">ZIP code *</label><input class="fctrl" type="text" id="ckZip" placeholder="10036" autocomplete="postal-code"/></div>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="ckpanel">
+                        <h2 class="rc-h2"><i class="fas fa-credit-card"></i>Payment method</h2>
+                        <div class="ckopts">
+                           <label class="ckopt">
+                              <input type="radio" name="payment" value="cash" checked>
+                              <span><strong>Cash on delivery</strong><em>Have cash ready - we carry change</em></span>
+                           </label>
+                           <label class="ckopt">
+                              <input type="radio" name="payment" value="card">
+                              <span><strong>Card on delivery</strong><em>Visa, Mastercard, Amex, Apple Pay</em></span>
+                           </label>
+                           <label class="ckopt">
+                              <input type="radio" name="payment" value="instore">
+                              <span><strong>Pay at the branch</strong><em>Counter or table service</em></span>
+                           </label>
+                        </div>
+                        <p class="ckpaynote" id="ckPayNote"><i class="fas fa-circle-info"></i> Please have cash ready - our driver carries change for up to $50.</p>
+                     </div>
+
+                     <div class="bkerr" id="ckError" style="display:none;"></div>
+
+                     <div class="ckplace">
+                        <button class="rc-btn ckplacebtn" type="submit" id="ckPlace"><i class="fas fa-bag-shopping"></i>Place Order</button>
+                        <p class="ckfineprint"><i class="fas fa-shield-halved"></i> By placing this order you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy-policy.html">Privacy Policy</a>.</p>
+                     </div>
+
+                  </form>
+               </div>
+
+               <aside class="col-lg-5">
+                  <div class="ckpanel cksummary">
+                     <h3 class="rc-h3"><i class="fas fa-receipt"></i>Order Summary <span id="ckCount">0 items</span></h3>
+                     <div class="ckitems" id="ckItems"></div>
+
+                     <div class="ckpromo">
+                        <input class="fctrl" type="text" id="ckPromo" placeholder="Promo code (try SARAB10)"/>
+                        <button class="ckbtnpromo" type="button" id="ckPromoBtn">Apply</button>
+                     </div>
+                     <div class="ckpromomsg" id="ckPromoMsg"></div>
+
+                     <div class="cktotals">
+                        <div class="ckrow"><span>Subtotal</span><strong id="ckSub">$0.00</strong></div>
+                        <div class="ckrow" id="ckDiscRow" style="display:none;"><span id="ckDiscLbl">Discount</span><strong id="ckDisc">$0.00</strong></div>
+                        <div class="ckrow"><span>Delivery</span><strong id="ckDel">FREE</strong></div>
+                        <div class="ckrow"><span>Tax (8.875%)</span><strong id="ckTax">$0.00</strong></div>
+                        <div class="ckrow total"><span>Total</span><strong id="ckTotal">$0.00</strong></div>
+                     </div>
+                     <p class="cketa" id="ckEta">Delivery in about 25 minutes</p>
+                     <p class="ckfineprint"><i class="fas fa-circle-info"></i> You pay on delivery or at the branch - cash, card or Apple Pay. No card details are taken online.</p>
+                  </div>
+               </aside>
+            </div>
+            <div class="ckdonebox" id="ckDone" style="display:none;">
+               <i class="fas fa-circle-check"></i>
+               <h2>Order placed - reference <span id="ckRef"></span></h2>
+               <p id="ckDoneMsg"></p>
+               <div class="ckdonegrid" id="ckDoneSummary"></div>
+               <div class="ckdonebtns">
+                  <a class="rc-btn" id="ckMailLink" href="mailto:orders@sarabfood.com"><i class="fas fa-paper-plane"></i>Send order to the kitchen</a>
+                  <a class="rc-btn ghost" id="ckCallLink" href="tel:+12125550134"><i class="fas fa-phone-alt"></i>Call the branch</a>
+                  <a class="rc-btn ghost" href="index.html#menu"><i class="fas fa-utensils"></i>Order something else</a>
+               </div>
+               <p class="ckfineprint">Tap one of the first two buttons so the branch receives your order: the first opens your email app with the whole order written out and ready to send, the second dials the branch directly. Quote the reference number above and we will find it instantly.</p>
+            </div>
+         </div>
+      </main>
+
+      <footer class="rc-foot">
+         <div class="container">
+            <div class="row g-4">
+               <div class="col-md-5">
+                  <div class="rc-lg" style="margin-bottom:8px;">Sar<span>ab</span></div>
+                  <p style="font-size:.86rem;color:rgba(255,255,255,.65);margin:0;">Cheap recipes, budget meal deals and fast food favourites - cooked fresh and delivered in about 25 minutes.</p>
+               </div>
+               <div class="col-md-4">
+                  <h5 class="rc-footit">Quick Links</h5>
+                  <ul class="rc-flinks">
+                     <li><a href="index.html#menu">Full Menu</a></li>
+                     <li><a href="recipes.html">Cheap Recipes</a></li>
+                     <li><a href="locations.html">Branches &amp; Booking</a></li>
+                     <li><a href="index.html#faq">Value FAQs</a></li>
+                  </ul>
+               </div>
+               <div class="col-md-3">
+                  <h5 class="rc-footit">Legal</h5>
+                  <ul class="rc-flinks">
+                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                     <li><a href="terms.html">Terms of Service</a></li>
+                     <li><a href="privacy-policy.html#cookies">Cookies</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="rc-fbot">&copy; 2026 Sarab Restaurant &middot; 1420 Madison Avenue, New York, NY 10029 &middot; <a href="tel:+12125550134">+1 (212) 555-0134</a></div>
+         </div>
+      </footer>
+
+      <script src="js/consent.js"></script>
+      <script src="js/branches.js"></script>
+      <script src="js/booking.js"></script>
+      <script src="js/cart.js"></script>
+   </body>
+</html>
