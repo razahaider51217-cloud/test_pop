@@ -1,0 +1,9 @@
+# robots.txt - Sarab Fast Food & Restaurant
+# Production site (Google Ads ready)
+
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# Crawl-delay removed - our server handles Googlebot fine
+Sitemap: https://sarabfood.com/sitemap.xml
