@@ -1,11 +1,15 @@
 {
-  "name": "scareware-en",
+  "name": "sarab-restaurant-site",
   "version": "1.0.0",
   "private": true,
-  "description": "English scareware page - static site with Node server for correct MIME types",
+  "description": "Sarab Fast Food & Restaurant - static site (menu, cheap recipes, 8 US branches, cart and checkout) served by a dependency-free Node static server so it runs on Heroku and any Node host.",
   "main": "server.js",
-  "start": "node server.js",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
   "engines": {
-    "node": ">=18"
-  }
+    "node": "24.x"
+  },
+  "license": "UNLICENSED"
 }
