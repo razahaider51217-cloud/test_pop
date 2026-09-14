@@ -1,0 +1,11 @@
+{
+  "name": "scareware-en",
+  "version": "1.0.0",
+  "private": true,
+  "description": "English scareware page - static site with Node server for correct MIME types",
+  "main": "server.js",
+  "start": "node server.js",
+  "engines": {
+    "node": ">=18"
+  }
+}
