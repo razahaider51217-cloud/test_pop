@@ -2576,3 +2576,564 @@ footer {
   background: rgba(255, 255, 255, 0.12);
 }
 
+/* ============================================================
+   RECIPE PAGES (hub + single recipe)
+   ============================================================ */
+.rc-top {
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+  padding: 14px 0;
+  position: relative;
+  z-index: 5;
+}
+.rc-lg {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--dark);
+  text-decoration: none;
+  line-height: 1;
+}
+.rc-lg span {
+  color: var(--primary);
+}
+.rc-toplinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.rc-toplinks a {
+  color: #666;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.rc-toplinks a:hover {
+  color: var(--primary);
+}
+.rc-toplinks a.rc-order {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 40px;
+  padding: 9px 18px;
+  box-shadow: 0 6px 18px rgba(232, 40, 26, 0.28);
+}
+.rc-toplinks a.rc-order:hover {
+  transform: translateY(-2px);
+  color: #fff;
+}
+.rc-hero {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2b1a17 100%);
+  padding: 62px 0 48px;
+}
+.rc-crumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 18px;
+}
+.rc-crumb a {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+}
+.rc-crumb a:hover {
+  color: var(--secondary);
+}
+.rc-crumb i {
+  font-size: 0.6rem;
+  opacity: 0.6;
+}
+.rc-slbl {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.3rem;
+  color: var(--secondary);
+  display: block;
+  margin-bottom: 6px;
+}
+.rc-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+.rc-lead {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.96rem;
+  line-height: 1.75;
+  max-width: 760px;
+  margin-bottom: 20px;
+}
+.rc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.rc-chip {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  border-radius: 40px;
+  padding: 7px 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.rc-chip.alt {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: var(--dark);
+}
+.rc-body {
+  padding: 44px 0 76px;
+  background: var(--cream);
+}
+.rc-heroimg {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.14);
+  margin-bottom: 34px;
+  background: var(--cream2);
+}
+.rc-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+  padding: 26px 28px;
+  margin-bottom: 22px;
+}
+.rc-h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rc-h2 i,
+.rc-h3 i {
+  color: var(--primary);
+  font-size: 1rem;
+}
+.rc-h3 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.rc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.rc-list li {
+  position: relative;
+  padding: 0 0 9px 24px;
+  font-size: 0.89rem;
+  line-height: 1.65;
+  color: #666;
+}
+.rc-list li:before {
+  content: "\f111";
+  font-family: "Font Awesome 6 Pro", "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  font-size: 0.4rem;
+  color: var(--secondary);
+}
+.rc-check li:before {
+  content: "\f00c";
+  font-size: 0.75rem;
+  color: var(--green);
+  left: 0;
+  top: 2px;
+}
+.rc-note {
+  background: var(--cream);
+  border-left: 3px solid var(--secondary);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.83rem;
+  color: #777;
+  margin-bottom: 16px;
+}
+.rc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+}
+.rc-table th,
+.rc-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0ece6;
+}
+.rc-table th {
+  color: #777;
+  font-weight: 600;
+}
+.rc-table td {
+  color: var(--dark);
+  font-weight: 600;
+  text-align: right;
+}
+.rc-table tr:last-child th,
+.rc-table tr:last-child td {
+  border-bottom: 0;
+}
+.rc-table-sm th,
+.rc-table-sm td {
+  padding: 8px 10px;
+  font-size: 0.82rem;
+}
+.rc-steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.rc-steps li {
+  position: relative;
+  counter-increment: step;
+  padding: 0 0 18px 46px;
+  font-size: 0.9rem;
+  line-height: 1.68;
+  color: #666;
+}
+.rc-steps li:before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 14px rgba(232, 40, 26, 0.28);
+}
+.rc-steps li:after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 32px;
+  bottom: 4px;
+  width: 2px;
+  background: #f1ece5;
+}
+.rc-steps li:last-child {
+  padding-bottom: 0;
+}
+.rc-steps li:last-child:after {
+  display: none;
+}
+.rc-tip {
+  background: #fff9ef;
+  border: 1px dashed rgba(246, 166, 35, 0.6);
+  border-radius: 18px;
+  padding: 24px 26px;
+  margin-bottom: 22px;
+}
+.rc-tip ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.rc-tip li {
+  position: relative;
+  padding: 0 0 9px 22px;
+  font-size: 0.87rem;
+  line-height: 1.66;
+  color: #6d6353;
+}
+.rc-tip li:before {
+  content: "\f0eb";
+  font-family: "Font Awesome 6 Pro", "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  color: var(--secondary);
+  font-size: 0.8rem;
+}
+.rc-tip li:last-child {
+  padding-bottom: 0;
+}
+.rc-cta {
+  background: linear-gradient(135deg, #1a1a1a 0%, #33201b 100%);
+  border-radius: 20px;
+  padding: 32px 34px;
+  color: #fff;
+}
+.rc-cta h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+.rc-cta p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 620px;
+}
+.rc-ctabtns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.rc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  border-radius: 40px;
+  padding: 13px 26px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 8px 22px rgba(232, 40, 26, 0.3);
+}
+.rc-btn:hover {
+  background: #c81f13;
+  color: #fff;
+  transform: translateY(-2px);
+}
+.rc-btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow: none;
+}
+.rc-btn.ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+.rc-btn.full {
+  width: 100%;
+  margin-top: 4px;
+}
+.rc-rels {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.rc-rel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 7px;
+  transition: 0.3s;
+}
+.rc-rel:hover {
+  background: var(--cream);
+}
+.rc-rel img {
+  width: 58px;
+  height: 58px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.rc-rel strong {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--dark);
+  line-height: 1.35;
+}
+.rc-rel em {
+  display: block;
+  font-style: normal;
+  font-size: 0.74rem;
+  color: #999;
+  margin-top: 2px;
+}
+.rc-orderbox p {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: #777;
+  margin-bottom: 14px;
+}
+.rc-foot {
+  background: var(--dark);
+  padding: 52px 0 24px;
+}
+.rc-footit {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--secondary);
+  margin-bottom: 14px;
+}
+.rc-flinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.rc-flinks li {
+  margin-bottom: 9px;
+}
+.rc-flinks a {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.84rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.rc-flinks a:hover {
+  color: var(--primary);
+  padding-left: 4px;
+}
+.rc-fbot {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 34px;
+  padding-top: 18px;
+  text-align: center;
+  font-size: 0.79rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+.rc-fbot a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+/* recipe hub cards */
+.rccard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+  transition: 0.35s;
+}
+.rccard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.14);
+}
+.rccard-img {
+  position: relative;
+  display: block;
+  height: 210px;
+  overflow: hidden;
+  background: var(--cream2);
+}
+.rccard-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+.rccard:hover .rccard-img img {
+  transform: scale(1.07);
+}
+.rccard-cost {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: var(--green);
+  color: #fff;
+  border-radius: 9px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.rccard-cost em {
+  font-style: normal;
+  font-size: 0.66rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+.rccard-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 22px 22px;
+  flex: 1;
+}
+.rccard-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--primary);
+}
+.rccard-body strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.4;
+}
+.rccard-body em {
+  font-style: normal;
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: #777;
+  flex: 1;
+}
+.rccard-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 4px;
+}
+@media (max-width: 991px) {
+  .rc-title {
+    font-size: 2rem;
+  }
+  .rc-heroimg {
+    height: 300px;
+  }
+  .rc-body {
+    padding: 34px 0 60px;
+  }
+}
+@media (max-width: 575px) {
+  .rc-heroimg {
+    height: 220px;
+    border-radius: 14px;
+  }
+  .rc-card,
+  .rc-tip {
+    padding: 20px 18px;
+  }
+  .rc-title {
+    font-size: 1.7rem;
+  }
+  .rc-cta {
+    padding: 24px 20px;
+  }
+  .rc-cta h3 {
+    font-size: 1.25rem;
+  }
+}
+
+
